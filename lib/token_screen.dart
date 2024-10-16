@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class TokenScreen extends StatefulWidget {
   const TokenScreen({super.key});
@@ -14,60 +13,95 @@ class _TokenScreenState extends State<TokenScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Stack(
-          children: [fondo1(), animacionid(), token(context)],
-        ),
+      body: Stack(
+        children: [
+          fondotoken(),
+          verificartoken(context),
+        ],
       ),
     );
   }
 
-  SingleChildScrollView token(BuildContext context) {
+  Widget fondotoken() {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color(0xFFd7e2f1),
+      ),
+    );
+  }
+
+  Widget verificartoken(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 280),
-          Container(
-            padding: const EdgeInsets.all(20),
-            margin: const EdgeInsets.symmetric(horizontal: 30),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(193, 255, 255, 255),
-              borderRadius: BorderRadius.circular(25),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color.fromARGB(255, 5, 61, 107),
-                  blurRadius: 15,
-                  offset: Offset(0, 5),
-                )
-              ],
-            ),
-            child: Column(
-              children: [
-                const SizedBox(height: 10),
-                Form(
-                  key: _formKey, // Clave del formulario
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 200),
+              Container(
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.symmetric(horizontal: 30),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFD7E2F1), // Neutro
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFF416f9a).withOpacity(0.9), // Principal
+                      blurRadius: 12,
+                      offset: const Offset(0, 2),
+                    )
+                  ],
+                ),
+                child: Form(
+                  key: _formKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      const SizedBox(height: 30),
                       TextFormField(
                         keyboardType: TextInputType.number,
-                        autocorrect: false,
-                        decoration: const InputDecoration(
-                          hintText: '', // Texto de ayuda
-                          labelText: 'Ingresa Token',
-                          icon: Icon(Icons.message),
+                        cursorColor: const Color(0xFF89c8e2), // Cambia esto al color deseado para el cursor
+                        decoration: InputDecoration(
+                          labelText: 'Ingresa el Token',
+                          labelStyle: const TextStyle(
+                            color: Color(0xFF416f9a), // Color de la etiqueta
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock_outline,
+                            color: Color(0xFF416f9a), // Color del ícono
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFFFFFFF), // Fondo claro para el campo de texto
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: Color(0xFF89c8e2), // Cambia esto al color deseado
+                              width: 2.0, // Grosor del borde
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: Color(0xFF89c8e2), // Cambia esto al color deseado
+                              width: 2.0, // Grosor del borde
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: Color(0xFF89c8e2), // Cambia esto al color deseado
+                              width: 3.0, // Grosor del borde al tener foco
+                            ),
+                          ),
                         ),
                         validator: (value) {
-                          String pattern = r'^\d{6}$'; // Expresión regular para validar exactamente 6 dígitos
+                          String pattern = r'^\d{6}$';
                           RegExp regExp = RegExp(pattern);
 
                           if (value == null || value.isEmpty) {
                             return 'El campo no puede estar vacío.';
                           }
 
-                          // Validar que el valor cumpla con el patrón definido
                           if (!regExp.hasMatch(value)) {
                             return 'Ingrese un número de exactamente 6 dígitos.';
                           }
@@ -75,66 +109,34 @@ class _TokenScreenState extends State<TokenScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 30),
-                      MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        disabledColor: Colors.grey,
-                        color: const Color.fromARGB(192, 156, 150, 243),
-                        textColor: const Color.fromARGB(255, 210, 228, 247),
-                        child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 1, vertical: 5),
-                            child: const Text(' Iniciar Sesión ')),
+                      const SizedBox(height: 40),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF89c8e2), // Principal
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                        ),
+                        child: const Text('Iniciar Sesion',
+                            style: TextStyle(fontSize: 16, color: Colors.black)),
                         onPressed: () {
-                          // Validar el formulario antes de proceder
                           if (_formKey.currentState!.validate()) {
-                            // Si es válido, navega a la pantalla 'admin'
-                            Navigator.pushReplacementNamed(context, 'admin');
+                            Navigator.pushReplacementNamed(context, 'medico');
                           } else {
-                            // Si no es válido, muestra los errores
                             print("Formulario no válido.");
                           }
                         },
                       ),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-
-  SafeArea animacionid() {
-    return SafeArea(
-      child: Container(
-        margin: const EdgeInsets.only(top: 30),
-        width: double.infinity,
-        child: Lottie.asset(
-          'assets/sms.json',
-          width: 200,
-          height: 200,
-          fit: BoxFit.contain,
         ),
       ),
-    );
-  }
-
-  Container fondo1() {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 60, 57, 223),
-          Color.fromARGB(255, 186, 176, 243),
-          Color.fromARGB(255, 164, 178, 241),
-          Color.fromARGB(255, 60, 57, 223),
-        ]),
-      ),
-      width: double.infinity,
-      height: double.infinity,
     );
   }
 }

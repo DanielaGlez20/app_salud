@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nicamed/admin/admin_screen.dart';
 import 'package:nicamed/login_screen.dart';
+import 'package:nicamed/medico/homeMedico.dart';
 import 'package:nicamed/recover_id_screen.dart';
 import 'package:nicamed/token_screen.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         'login': (_) => const LoginScreen(),
         'token': (_) => const TokenScreen(),
         'recoverid': (_) => const RecoverIdScreen(),
-        'admin': (_) => const AdminScreen(),
+        'medico': (_) => const HomeMedico(),
       },
       initialRoute: 'login',
     );

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nicamed/widgets/input_decoration.dart';
 import 'package:lottie/lottie.dart';
 
-
 class RecoverIdScreen extends StatelessWidget {
-  const RecoverIdScreen ({super.key});
+  const RecoverIdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,139 +20,146 @@ class RecoverIdScreen extends StatelessWidget {
 
   SingleChildScrollView recover(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [
-        const SizedBox(height: 230),
-        Container(
+      child: Column(
+        children: [
+          const SizedBox(height: 240),
+          Container(
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.symmetric(horizontal: 30),
             width: double.infinity,
-            // height: 350,
             decoration: BoxDecoration(
-                color: const Color.fromARGB(193, 255, 255, 255),
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color.fromARGB(255, 5, 61, 107),
-                      blurRadius: 15,
-                      offset: Offset(0, 5) //para aumentar el sobreado
-                      )
-                ]),
+              color: const Color(0xFFffffff),
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0xFF416F9A), // Sombra de color principal
+                  blurRadius: 15,
+                  offset: Offset(0, 5),
+                ),
+              ],
+            ),
             child: Column(
               children: [
-                const SizedBox(height: 5),
-                Container(
-                  child: Form(
-                    autovalidateMode: AutovalidateMode.onUnfocus,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          keyboardType: TextInputType.name,
-                          autocorrect: false,
-                          decoration: InputDecorations.inputDecoration(
-                              hintext: '',
-                              labeltext: 'Nombre Completo',
-                              icono: const Icon(Icons.person)),
-                          validator: (value) {
-                            // Validando que el ID contenga exactamente 6 dígitos numéricos y no comience con 0
-                            String pattern = r'^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$';
-                            RegExp regExp = RegExp(pattern);
-
-                            if (value == null || value.isEmpty) {
-                              return 'El campo no puede estar vacío.';
-                             }
-                            return regExp.hasMatch(value)
-                                ? null
-                                : 'Este campo solo puede contener letras.';
-                          },
+                const SizedBox(height: 10),
+                Form(
+                  autovalidateMode: AutovalidateMode.onUnfocus,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        keyboardType: TextInputType.name,
+                        autocorrect: false,
+                        decoration: InputDecorations.inputDecoration(
+                          hintText: 'Escribe tu nombre completo',
+                          labelText: 'Nombre Completo',
+                          icono: const Icon(
+                            Icons.person,
+                            color: Color(0xFF416f9a), // Color principal
+                          ),
                         ),
-                        const SizedBox(height: 5),
+                        validator: (value) {
+                          String pattern = r'^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$';
+                          RegExp regExp = RegExp(pattern);
 
-                        TextFormField(
-                          keyboardType: TextInputType.text,  // Cambiar a TextInputType.text para permitir letras y números
-                          autocorrect: false,
-                          decoration: InputDecorations.inputDecoration(
-                              hintext: 'XXX-XXXXXX-XXXXA',  // Formato de cédula nicaragüense
-                              labeltext: 'Cédula',
-                              icono: const Icon(Icons.assignment)),
-                          validator: (value) {
-                            // Expresión regular para aceptar cédulas con formato XXX-XXXXXX-XXXXA
-                            String pattern = r'^\d{3}-\d{6}-\d{4}[A-Z]$'; // Permite exactamente el formato XXX-XXXXXX-XXXXA
-                            RegExp regExp = RegExp(pattern);
-
-                            if (value == null || value.isEmpty) {
-                              return 'El campo no puede estar vacío.';
-                            }
-
-                            // Validar que el valor cumpla con el patrón definido
-                            return regExp.hasMatch(value)
-                                ? null
-                                : 'La cédula debe tener el formato XXX-XXXXXX-XXXXA';
-                          },
+                          if (value == null || value.isEmpty) {
+                            return 'El campo no puede estar vacío.';
+                          }
+                          return regExp.hasMatch(value)
+                              ? null
+                              : 'Este campo solo puede contener letras.';
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        autocorrect: false,
+                        decoration: InputDecorations.inputDecoration(
+                          hintText: 'XXX-XXXXXX-XXXXA',
+                          labelText: 'Cédula',
+                          icono: const Icon(
+                            Icons.assignment,
+                            color: Color(0xFF416f9a), // Color secundario
+                          ),
                         ),
-                        const SizedBox(height: 10),
-       
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          autocorrect: false,
-                          decoration: InputDecorations.inputDecoration(
-                              hintext: '1234-5678',  // Ejemplo de formato para el texto de ayuda
-                              labeltext: 'Telefono',
-                              icono: const Icon(Icons.phone)),
-                          validator: (value) {
-                            
-                            String pattern = r'^\d{4}-\d{4}$';            // Expresión regular para validar 4 dígitos, un guion, y otros 4 dígitos                // 4 dígitos, un guion, 4 dígitos
-                            RegExp regExp = RegExp(pattern);
+                        validator: (value) {
+                          String pattern = r'^\d{3}-\d{6}-\d{4}[A-Z]$';
+                          RegExp regExp = RegExp(pattern);
 
-                            if (value == null || value.isEmpty) {
-                              return 'El campo no puede estar vacío.';
-                            }
+                          if (value == null || value.isEmpty) {
+                            return 'El campo no puede estar vacío.';
+                          }
 
-                            // Validar que el valor cumpla con el patrón definido
-                            if (!regExp.hasMatch(value)) {
-                              if (value.contains(RegExp(r'[a-zA-Z]'))) {
-                                return 'No se permiten letras. sigue el formato "1234-5678".';
-                              } else if (value.contains(RegExp(r'[^\d-]'))) {
-                                return 'Solo se permiten números y un guion en el formato 1234-5678.';
-                              } else {
-                                return 'Ingrese un número en el formato 1234-5678.';
-                              }
-                            }
-                            return null;
-                          },
+                          return regExp.hasMatch(value)
+                              ? null
+                              : 'La cédula debe tener el formato XXX-XXXXXX-XXXXA';
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        autocorrect: false,
+                        decoration: InputDecorations.inputDecoration(
+                          hintText: '1234-5678',
+                          labelText: 'Teléfono',
+                          icono: const Icon(
+                            Icons.phone,
+                            color: Color(0xFF416f9a), // Color secundario
+                          ),
                         ),
-                        const SizedBox(height: 30),
+                        validator: (value) {
+                          String pattern = r'^\d{4}-\d{4}$';
+                          RegExp regExp = RegExp(pattern);
 
-                        MaterialButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          disabledColor: Colors.grey,
-                          color: const Color.fromARGB(176, 160, 224, 240),
-                          textColor: const Color.fromARGB(255, 2, 35, 68),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 8),
-                            child: const Text(' Enviar ')),
-                          onPressed: () {},
-                        )
-                      ],
-                    ),
+                          if (value == null || value.isEmpty) {
+                            return 'El campo no puede estar vacío.';
+                          }
+
+                          if (!regExp.hasMatch(value)) {
+                            if (value.contains(RegExp(r'[a-zA-Z]'))) {
+                              return 'No se permiten letras. Sigue el formato "1234-5678".';
+                            } else if (value.contains(RegExp(r'[^\d-]'))) {
+                              return 'Solo se permiten números y un guion en el formato 1234-5678.';
+                            } else {
+                              return 'Ingrese un número en el formato 1234-5678.';
+                            }
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 30),
+                      MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        disabledColor: const Color(0xFFDFE2E6),
+                        color: const Color(0xFF416f9a), // Color principal
+                        textColor: Colors.white,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 15),
+                          child: const Text('Enviar'),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
                 )
               ],
-            )),
-      ]),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   SafeArea animacionsms() {
     return SafeArea(
       child: Container(
-        margin: const EdgeInsets.only(top:5),
+        margin: const EdgeInsets.only(top: 30),
         width: double.infinity,
         child: Lottie.asset(
           'assets/candado.json',
-          width: 200,
-          height: 200,
+          width: 150,
+          height: 150,
           fit: BoxFit.contain,
         ),
       ),
@@ -163,12 +169,16 @@ class RecoverIdScreen extends StatelessWidget {
   Container fondo1() {
     return Container(
       decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-        Color.fromARGB(255, 124, 172, 240),
-        Color.fromARGB(255, 217, 232, 247),
-        Color.fromARGB(255, 217, 232, 247),
-        Color.fromARGB(255, 57, 126, 223),
-      ])),
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFFffffff),
+            Color(0xFFd7e2f1),
+            
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
       width: double.infinity,
       height: double.infinity,
     );

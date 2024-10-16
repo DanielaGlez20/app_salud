@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
         width: double.infinity,
         height: double.infinity,
         child: Stack(
-          children: [fondo1(), logo(), login(context)],
+          children: [fondo(), logo(), login(context)],
         ),
       ),
     );
@@ -28,20 +28,22 @@ class _LoginScreenState extends State<LoginScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 300),
+          const SizedBox(height: 250), // Ajustado para un mejor espaciado
           Container(
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.symmetric(horizontal: 30),
             width: double.infinity,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(193, 255, 255, 255),
+              color: const Color(
+                  0xFFD7E2F1), // Fondo de la tarjeta, azul muy claro (neutro)
               borderRadius: BorderRadius.circular(25),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 5, 61, 107),
+                  color: const Color(0xFF416f9a)
+                      .withOpacity(0.9), // Azul oscuro con opacidad
                   blurRadius: 15,
-                  offset: Offset(0, 5),
-                )
+                  offset: const Offset(0, 5),
+                ),
               ],
             ),
             child: Column(
@@ -56,12 +58,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.number,
                         autocorrect: false,
                         decoration: InputDecorations.inputDecoration(
-                          hintext: '',
-                          labeltext: 'ID',
-                          icono: const Icon(Icons.contact_page),
+                          hintText: 'Ingrese su ID',
+                          labelText: 'ID',
+                          icono: const Icon(Icons.contact_page,
+                              color: Color(0xFF416f9a)), // Azul oscuro
                         ),
                         validator: (value) {
-                          String pattern = r'^[1-9]\d{5}$'; // Expresión regular para validar exactamente 6 dígitos y sin empezar con 0
+                          String pattern =
+                              r'^[1-9]\d{5}$'; // Expresión regular para validar exactamente 6 dígitos y sin empezar con 0
                           RegExp regExp = RegExp(pattern);
                           if (value == null || value.isEmpty) {
                             return 'El campo no puede estar vacío.';
@@ -76,12 +80,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.number,
                         autocorrect: false,
                         decoration: InputDecorations.inputDecoration(
-                          hintext: '',
-                          labeltext: 'Telefono',
-                          icono: const Icon(Icons.phone),
+                          hintText: 'Ingrese su teléfono',
+                          labelText: 'Teléfono',
+                          icono: const Icon(Icons.phone,
+                              color: Color(0xFF416f9a)), // Azul oscuro
                         ),
                         validator: (value) {
-                          String pattern = r'^[0-9]{8}$'; // Expresión regular para validar exactamente 8 dígitos
+                          String pattern =
+                              r'^[0-9]{8}$'; // Expresión regular para validar exactamente 8 dígitos
                           RegExp regExp = RegExp(pattern);
 
                           if (value == null || value.isEmpty) {
@@ -97,13 +103,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       MaterialButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        disabledColor: Colors.grey,
-                        color: const Color.fromARGB(176, 160, 224, 240),
-                        textColor: const Color.fromARGB(255, 2, 35, 68),
+                        disabledColor: const Color(
+                            0xFF89C8E2), // Azul claro para botón deshabilitado
+                        color: const Color(
+                            0xFF89c8e2), // Azul brillante para botón habilitado
+                        textColor: const Color(0xFF416f9a),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 60, vertical: 15),
-                          child: const Text(' Enviar Token '),
+                          child: const Text('Enviar Token'),
                         ),
                         onPressed: () {
                           // Validar el formulario antes de proceder
@@ -122,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 90),
+          const SizedBox(height: 60),
           GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, 'recoverid');
@@ -132,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 1, 33, 59),
+                color: Color(0xFF416f9a), // Azul oscuro
               ),
             ),
           )
@@ -147,26 +155,27 @@ class _LoginScreenState extends State<LoginScreen> {
         margin: const EdgeInsets.only(top: 10),
         width: double.infinity,
         child: Image.asset(
-          'assets/logo.png',
-          width: 350,
-          height: 350,
+          'assets/L.png',
+          width: 230, // Ajustado para un mejor ajuste visual
+          height: 230,
         ),
       ),
     );
   }
 
-  Container fondo1() {
+  Container fondo() {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 124, 172, 240),
-          Color.fromARGB(255, 217, 232, 247),
-          Color.fromARGB(255, 217, 232, 247),
-          Color.fromARGB(255, 124, 172, 240),
-        ]),
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFFd7e2f1),
+            Color(0xFFffffff),
+            Color(0xFFd7e2f1),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
-      width: double.infinity,
-      height: double.infinity,
     );
   }
 }
