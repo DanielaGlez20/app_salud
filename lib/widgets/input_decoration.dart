@@ -26,7 +26,7 @@ class InputDecorations {
       labelStyle: const TextStyle(
         color: Color(0xFF416f9a), 
       ),
-      prefixIcon: icono,
+      prefixIcon: icono, iconColor: Color(0xFF416f9a)
     );
   }
 }
