@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TokenScreen extends StatefulWidget {
   const TokenScreen({super.key});
@@ -60,6 +61,10 @@ class _TokenScreenState extends State<TokenScreen> {
                       const SizedBox(height: 30),
                       TextFormField(
                         keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly, // Solo permite números
+                          LengthLimitingTextInputFormatter(6),    // Limita a 8 dígitos
+                        ],
                         cursorColor: const Color(0xFF89c8e2), // Cambia esto al color deseado para el cursor
                         decoration: InputDecoration(
                           labelText: 'Ingresa el Token',

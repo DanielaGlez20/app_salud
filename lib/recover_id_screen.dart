@@ -22,7 +22,7 @@ class RecoverIdScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 240),
+          const SizedBox(height: 300),
           Container(
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.symmetric(horizontal: 30),
@@ -154,7 +154,7 @@ class RecoverIdScreen extends StatelessWidget {
   SafeArea animacionsms() {
     return SafeArea(
       child: Container(
-        margin: const EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 100),
         width: double.infinity,
         child: Lottie.asset(
           'assets/candado.json',

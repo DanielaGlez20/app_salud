@@ -78,14 +78,6 @@ class _HomeMedicoState extends State<HomeMedico> {
                           ),
                         ],
                       ),
-                      Config.spaceMedium,
-                      const Text(
-                        'Accesos',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                       Config.spaceSmall,
                       GridView.builder(
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

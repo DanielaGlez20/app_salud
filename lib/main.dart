@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nicamed/Admin/interfaz_admin.dart';
 import 'package:nicamed/login_screen.dart';
 import 'package:nicamed/medico/homeMedico.dart';
 import 'package:nicamed/recover_id_screen.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         'token': (_) => const TokenScreen(),
         'recoverid': (_) => const RecoverIdScreen(),
         'medico': (_) => const HomeMedico(),
+        'admin': (_) => AdminScreen(), // Agrega la ruta para la pantalla del admin
       },
       initialRoute: 'login',
     );

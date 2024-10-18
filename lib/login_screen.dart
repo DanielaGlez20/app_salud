@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nicamed/widgets/input_decoration.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(height: 250), // Ajustado para un mejor espaciado
+          const SizedBox(height: 350), // Ajustado para un mejor espaciado
           Container(
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.symmetric(horizontal: 30),
@@ -57,6 +58,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         keyboardType: TextInputType.number,
                         autocorrect: false,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly, // Solo permite números
+                          LengthLimitingTextInputFormatter(6),    // Limita a 8 dígitos
+                        ],
                         decoration: InputDecorations.inputDecoration(
                           hintText: 'Ingrese su ID',
                           labelText: 'ID',
@@ -79,6 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         keyboardType: TextInputType.number,
                         autocorrect: false,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly, // Solo permite números
+                          LengthLimitingTextInputFormatter(8),    // Limita a 8 dígitos
+                        ],
                         decoration: InputDecorations.inputDecoration(
                           hintText: 'Ingrese su teléfono',
                           labelText: 'Teléfono',
@@ -130,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 200),
           GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, 'recoverid');
@@ -152,12 +161,12 @@ class _LoginScreenState extends State<LoginScreen> {
   SafeArea logo() {
     return SafeArea(
       child: Container(
-        margin: const EdgeInsets.only(top: 10),
+        margin: const EdgeInsets.only(top: 30),
         width: double.infinity,
         child: Image.asset(
           'assets/L.png',
-          width: 230, // Ajustado para un mejor ajuste visual
-          height: 230,
+          width: 300, // Ajustado para un mejor ajuste visual
+          height: 300,
         ),
       ),
     );
