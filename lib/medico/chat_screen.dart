@@ -57,7 +57,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildMessageBubble(Map<String, dynamic> message) {
     bool isDoctor = message['sender'] == 'doctor';
-    String senderName = isDoctor ? doctorName : patientName;
     String avatarImage = isDoctor
         ? 'assets/dr.jpg'
         : 'assets/7.jpg'; // Imagen para doctor o paciente
