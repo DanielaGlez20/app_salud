@@ -64,7 +64,7 @@ class _HomeMedicoState extends State<HomeMedico> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Dr. Sebastian Jimenez',
+                            'Dr(a): Sebastian Jimenez',
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
@@ -84,7 +84,7 @@ class _HomeMedicoState extends State<HomeMedico> {
                           crossAxisCount: 2, // Dos columnas
                           crossAxisSpacing: 13,
                           mainAxisSpacing: 13,
-                          childAspectRatio: 1.2, // Ajusta el tamaño de los cuadros
+                          childAspectRatio: 1.4, // Ajusta el tamaño de los cuadros (más pequeños)
                         ),
                         physics: const NeverScrollableScrollPhysics(), // Desactiva el desplazamiento del GridView
                         shrinkWrap: true, // Ajusta el tamaño del GridView al contenido
